@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tic-Tac-Toe Game</title>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen flex flex-col items-center bg-cover" style="background: url(sky.jpg);">
+
+    <!-- Header -->
+    <h1 class="py-3 text-5xl text-white font-bold">Tic Tac Toe</h1>
+    <section class="w-[300px] md:w-[400px] flex flex-col items-center">
+      <div>
+        <button id="playerO" class="w-32 py-2 text-lg font-semibold text-purple-900 bg-white rounded-xl shadow-md shadow-black">Player O</button>
+        <button id="playerX" class="w-32 py-2 text-lg font-semibold text-green-700 bg-white rounded-xl shadow-md shadow-black">Player X</button>
+      </div>
+      <p id="msg" class="mt-2 p-2 hidden bg-yellow-100 text-red-500 text-xl rounded-3xl"></p>
+      
+        <div id="box-container" class="h-[300px] md:h-[400px] w-full my-4 overflow-hidden flex flex-wrap gap-x-[6px] md:gap-x-2 gap-y-[6px] md:gap-y-2 bg-black shadow-2xl shadow-black rounded-3xl">
+          <button class="w-[32%] h-[32%] bg-white text-[4rem] md:text-[6rem] font-semibold" id="box"></button>
+          <button class="w-[32%] h-[32%] bg-white text-[4rem] md:text-[6rem] font-semibold" id="box"></button>
+          <button class="w-[32%] h-[32%] bg-white text-[4rem] md:text-[6rem] font-semibold" id="box"></button>
+          <button class="w-[32%] h-[32%] bg-white text-[4rem] md:text-[6rem] font-semibold" id="box"></button>
+          <button class="w-[32%] h-[32%] bg-white text-[4rem] md:text-[6rem] font-semibold" id="box"></button>
+          <button class="w-[32%] h-[32%] bg-white text-[4rem] md:text-[6rem] font-semibold" id="box"></button>
+          <button class="w-[32%] h-[32%] bg-white text-[4rem] md:text-[6rem] font-semibold" id="box"></button>
+          <button class="w-[32%] h-[32%] bg-white text-[4rem] md:text-[6rem] font-semibold" id="box"></button>
+          <button class="w-[32%] h-[32%] bg-white text-[4rem] md:text-[6rem] font-semibold" id="box"></button>
+        </div>
+      
+      <div>
+          <button id="resetbtn" class="w-32 mx-auto py-2 text-lg font-semibold bg-white rounded-xl shadow-md shadow-black">New Game</button>
+      </div>
+    </section>
+    
+    <footer class="w-full mt-4 py-2 text-center bg-white text-black">Developed By <a class="font-semibold" href="https://www.facebook.com/share/163WstNVPU/">Muhammad Khizar</a></footer>
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

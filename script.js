@@ -1,112 +1,81 @@
-let box = document.querySelectorAll('#box');
-let resetBtn = document.querySelector('#resetbtn');
-let turn0 = true;
-let winner = document.querySelector('#winner');
-let game = document.querySelector('#game');
-let playerO = document.querySelector('#playerO');
-let playerX = document.querySelector('#playerX');
-let msg = document.querySelector('#msg');
-let count = 0;
+let userScore = 0;
+let compScore = 0;
+let choices = document.querySelectorAll('#choice');
+let result = document.querySelector('#result');
+let userScoreP = document.querySelector('#user-score');
+let compScoreP = document.querySelector('#comp-score');
+let resetBtn = document.querySelector('#reset');
 
-// Functions
 
-const showWinner = (winner) => {
-    msg.innerHTML = 'Consgratulations, Winner is' + '<span class="text-blue-500">' + ' ' + winner + '</span>';
-    msg.style.display = 'block';
-    disableBox();
+// reset Game
+const resetscore = () => {
+    userScoreP.innerText = 0;
+    compScoreP.innerText = 0;
 }
 
-// disable box
-const disableBox = () => {
-    box.forEach((val) => {
-        val.disabled = true;
-    })
+resetBtn.addEventListener('click',resetscore);
+
+// Match draw
+const matchDraw = () => {
+    result.innerText = 'Match Was Draw, Play again!';
+    result.style.backgroundColor = '#070729e8';
 }
 
-// enable box
-const enableBox = () => {
-    box.forEach((val) => {
-        val.disabled = false;
-        val.innerText = '';
-    })
+
+// comp Choice
+const genCompChoice = () => {
+    // rock, paper, scissors
+    const options = ['rock', 'paper', 'scissors'];
+    const randIdx = Math.floor(Math.random() * 3);
+    return options[randIdx];
 }
 
-// math draw
-
-const draw = () => {
-    msg.innerText = 'Match Draw';
-    msg.style.display = 'block';
-    disableBox();
-}
-// Reset Game
-const resetGame = () => {
-    turn0 = true;
-    enableBox();
-    msg.style.display = 'none';
-    playerO.style.backgroundColor = "white";
-    playerX.style.backgroundColor = "white";
-}
-
-//   There are two types of array. 1- simple array 2- 2D array
-
-let winPattern = [
-    [0, 1, 2],
-    [0, 3, 6],
-    [0, 4, 8],
-    [1, 4, 7],
-    [2, 5, 8],
-    [2, 4, 6],
-    [3, 4, 5],
-    [6, 7, 8],
-];
-
-
-box.forEach((box) => {
-    box.addEventListener('click', () => {
-        console.log('box clicked');
-        if (turn0) {
-            // Player 0
-            box.innerText = 'O';
-            turn0 = false;
-            box.style.color = 'purple';
-            playerX.style.backgroundColor = 'grey';
-            playerO.style.backgroundColor = 'white';
-        } else {
-            // Player X
-            box.innerText = 'X';
-            turn0 = true;
-            box.style.color = 'green';
-            playerO.style.backgroundColor = 'grey';
-            playerX.style.backgroundColor = 'white';
-        }
-        box.disabled = true;
-        count++
-        
-        let isWinner = checkWinner();
-
-        if (count === 9 && !isWinner) {
-            draw();
-        }
-    });
-});
-
-let checkWinner = () => {
-
-    for (let pattern of winPattern) {
-
-        let pos1Val = box[pattern[0]].innerText;
-        let pos2Val = box[pattern[1]].innerText;
-        let pos3Val = box[pattern[2]].innerText;
-
-        if (pos1Val !== '' || pos2Val !== '' || pos3Val !== '') {
-            if (pos1Val === pos2Val && pos2Val === pos3Val) {
-                console.log('winner', pos1Val);
-                showWinner(pos1Val)
-                return true;
-            }
-        }
+// show winner
+const showWinner = (userWin, userChoice, compChoice) => {
+    if(userWin) {
+        userScore++
+        userScoreP.innerText = userScore;
+        result.innerText = `You Win! Your ${userChoice} Beats Comp ${compChoice}`;
+        result.style.backgroundColor = 'green';
+    } else {
+        compScore++
+        compScoreP.innerText = compScore;
+        result.innerText = `You Lose. Comp ${compChoice} Beats Your  ${userChoice}`;
+        result.style.backgroundColor = 'red';
     }
 }
 
 
-resetBtn.addEventListener('click', resetGame);
+const playGame = (userChoice) => {
+    console.log('useChoice =', userChoice);
+    // generate comp's choice
+    const compChoice = genCompChoice();
+    console.log('compChoice', compChoice);
+
+    if (userChoice === compChoice) {
+        // Match draw
+        matchDraw();
+    } else {
+        let userWin = true;
+        if (userChoice === 'rock') {
+            // scissors or paper
+            userWin = compChoice === 'paper' ? false : true;
+        } else if (userChoice === 'paper') {
+            // rocl=k or scissors
+            userWin = compChoice === 'scissors' ? false : true;
+        } else {
+            // rock or paper
+            userWin = compChoice === 'rock' ? false : true; 
+        }
+        showWinner(userWin, userChoice, compChoice);
+    }
+};
+
+// user's choice
+choices.forEach((choice) => {
+
+    choice.addEventListener('click', () => {
+        const userChoice = choice.getAttribute('name');
+        playGame(userChoice);
+    })
+});

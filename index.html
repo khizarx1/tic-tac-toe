@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,37 +8,44 @@
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="min-h-screen flex flex-col items-center bg-cover" style="background: url(sky.jpg);">
 
-    <!-- Header -->
-    <h1 class="py-3 text-5xl text-white font-bold">Tic Tac Toe</h1>
-    <section class="w-[300px] md:w-[400px] flex flex-col items-center">
-      <div>
-        <button id="playerO" class="w-32 py-2 text-lg font-semibold text-purple-900 bg-white rounded-xl shadow-md shadow-black">Player O</button>
-        <button id="playerX" class="w-32 py-2 text-lg font-semibold text-green-700 bg-white rounded-xl shadow-md shadow-black">Player X</button>
+<body class="min-h-screen">
+  <header class="py-2 md:py-6 text-2xl md:text-4xl text-center text-white font-bold bg-[#070729e8]">
+    Rock Paper Scissors
+  </header>
+  <!-- main -->
+  <main>
+    <!-- game -->
+    <div class="mt-4 md:mt-12 text-center">
+      <!-- images -->
+      <div class="flex items-center justify-center flex-wrap md:flex-nowrap gap-2 md:gap-12">
+        <div name="rock" id="choice" class="w-[100px] md:w-[165px] h-[100px] md:h-[165px] rounded-full hover:bg-black hover:cursor-pointer flex items-center justify-center"><img class="object-cover rounded-full w-[90px] md:w-[150px] h-[95px] md:h-[150px]" src="assets/rock.png" alt=""></div>
+        <div name="paper" id="choice" class="w-[100px] md:w-[165px] h-[100px] md:h-[165px] rounded-full hover:bg-black hover:cursor-pointer flex items-center justify-center"><img class="object-cover rounded-full w-[90px] md:w-[150px] h-[95px] md:h-[150px]" src="assets/paper.png" alt=""></div>
+        <div name="scissors" id="choice" class="w-[100px] md:w-[165px] h-[100px] md:h-[165px] rounded-full hover:bg-black hover:cursor-pointer flex items-center justify-center"><img class="object-cover rounded-full w-[90px] md:w-[150px] h-[95px] md:h-[150px]" src="assets/scissors.png" alt=""></div>
       </div>
-      <p id="msg" class="mt-2 p-2 hidden bg-yellow-100 text-red-500 text-xl rounded-3xl"></p>
-      
-        <div id="box-container" class="h-[300px] md:h-[400px] w-full my-4 overflow-hidden flex flex-wrap gap-x-[6px] md:gap-x-2 gap-y-[6px] md:gap-y-2 bg-black shadow-2xl shadow-black rounded-3xl">
-          <button class="w-[32%] h-[32%] bg-white text-[4rem] md:text-[6rem] font-semibold" id="box"></button>
-          <button class="w-[32%] h-[32%] bg-white text-[4rem] md:text-[6rem] font-semibold" id="box"></button>
-          <button class="w-[32%] h-[32%] bg-white text-[4rem] md:text-[6rem] font-semibold" id="box"></button>
-          <button class="w-[32%] h-[32%] bg-white text-[4rem] md:text-[6rem] font-semibold" id="box"></button>
-          <button class="w-[32%] h-[32%] bg-white text-[4rem] md:text-[6rem] font-semibold" id="box"></button>
-          <button class="w-[32%] h-[32%] bg-white text-[4rem] md:text-[6rem] font-semibold" id="box"></button>
-          <button class="w-[32%] h-[32%] bg-white text-[4rem] md:text-[6rem] font-semibold" id="box"></button>
-          <button class="w-[32%] h-[32%] bg-white text-[4rem] md:text-[6rem] font-semibold" id="box"></button>
-          <button class="w-[32%] h-[32%] bg-white text-[4rem] md:text-[6rem] font-semibold" id="box"></button>
+      <!-- score board -->
+      <div class="py-5 md:py-12 flex justify-center gap-12">
+        <!-- your score -->
+        <div>
+          <p id="user-score" class="text-center text-4xl font-semibold">0</p>
+          <p class="text-center text-2xl font-semibold">You</p>
         </div>
-      
-      <div>
-          <button id="resetbtn" class="w-32 mx-auto py-2 text-lg font-semibold bg-white rounded-xl shadow-md shadow-black">New Game</button>
+        <div>
+          <!-- comp score -->
+          <div>
+            <p id="comp-score" class="text-center text-4xl font-semibold">0</p>
+            <p class="text-center text-2xl font-semibold">Comp</p>
+          </div>
+        </div>
       </div>
-    </section>
-    
-    <footer class="w-full mt-4 py-2 text-center bg-white text-black">Developed By <a class="font-semibold" href="https://www.facebook.com/share/163WstNVPU/">Muhammad Khizar</a></footer>
+      <!-- Result -->
+      <span id="result" class="p-2 md:p-3 text-sm md:text-2xl text-white bg-[#070729e8] font-semibold rounded-2xl">Play Your Move</span>
+      <div class="mx-auto mt-6 md:mt-8"><button id="reset" class="p-2 md:p-3 text-sm md:text-2xl text-white bg-[#070729e8] font-semibold  rounded-2xl">Reset</button></div>
+    </div>
+  </main>
 
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   <script src="script.js"></script>
 </body>
+
 </html>
